@@ -2,14 +2,17 @@ package Basics;
 // Importing necessary classes for Selenium WebDriver and TestNG annotations.
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.interactions.Actions;
 import java.time.Duration;
 import java.util.Objects;
 
@@ -85,7 +88,7 @@ public class loginToNdosiWebsite {
         driver.findElement(By.xpath("//select[@id='brand']/option[@value='apple']")).click();
 //    Select Storage: 128GB → Unit price R480.00 displayed.
         driver.findElement(By.id("storage-128GB")).click();
-      //    Select Color: Blue → Color selection applied.
+//    Select Color: Blue → Color selection applied.
         driver.findElement(By.xpath("//select[@id='color']/option[@value='blue']")).click();
 //    Enter Quantity: 2 → Subtotal R960.00.
         driver.findElement(By.id("quantity")).sendKeys("2");
@@ -102,27 +105,30 @@ public class loginToNdosiWebsite {
         driver.findElement(By.id("apply-discount-btn")).click();
 //    Click Confirm Purchase → Success toast with order details.
         driver.findElement(By.id("purchase-device-btn")).click();
+
 //    ========================================================================
 //    Click View Invoice → Invoice history panel shown.
 
-        // 1. Switch driver focus into the iframe (use the iframe's ID, Name, or index)
-        driver.switchTo().frame("purchase-success-toast");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 
-        // 2. Click the button inside the iframe
-        driver.findElement(By.id("view-history-btn")).click();
+        WebElement successToast = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("purchase-success-toast")));
 
-        // 3. Crucial: Switch back to the main webpage when done with the popup
-        driver.switchTo().defaultContent();
+        WebElement viewInvoiceButton = successToast.findElement(By.id("view-history-btn"));
+
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});",viewInvoiceButton);
+
+        new Actions(driver).moveToElement(viewInvoiceButton).click().perform();
+
 //    ========================================================================
 
 //    Click View on invoice → Invoice opens with all order details.
-        driver.findElement(By.xpath("//*[contains(@id, 'view-invoice')]")).click();
-    }
+       driver.findElement(By.xpath("//*[contains(@id, 'view-invoice')]")).click();
 
-    //terminating the entire browser session.
-//    @AfterTest
-//    public void quit() {
-//        driver.quit();
-//    }
+    }
+//    Terminating the entire browser session.
+    @AfterTest
+    public void quit() {
+        driver.quit();
+    }
 }
 
