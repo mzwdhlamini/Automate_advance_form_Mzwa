@@ -80,7 +80,7 @@ public class loginToNdosiWebsite {
     //Inventory Form shown:
     @Test(dependsOnMethods = {"clickWebAutomationBasicForm"})
     public void fillInventoryForm() {
-        driver.findElement(By.xpath("//span[contains(.,'Web Automation Advance')]")).click();
+        //driver.findElement(By.xpath("//span[contains(.,'Web Automation Advance')]")).click();
 
 //    Select Device Type: Phone → Brand dropdown enabled.
         driver.findElement(By.xpath("//select[@id='deviceType']/option[@value='phone']")).click();
