@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterTest;
 
 import java.time.Duration;
 
@@ -39,6 +40,10 @@ public class LoginPage {
 
     }
 
-
+//    Terminating the entire browser session.
+    @AfterTest
+    public void quit() {
+        driver.quit();
+    }
 
 }

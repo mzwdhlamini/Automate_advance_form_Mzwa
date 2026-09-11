@@ -8,6 +8,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
@@ -83,11 +84,6 @@ public class LandingPage {
         myLearningTab.isDisplayed();
     }
 
-//Verifying that the login was successful by checking if the user profile button is displayed.
-    public void verifyLoginSuccess() {
-        verify_Login_Success.isDisplayed();
-    }
-
     public void clickLearn() {
         click_Learn.click();
     }
@@ -100,7 +96,7 @@ public class LandingPage {
         click_Web_Automation_Advance.click();
     }
 
-    //    filling in the Inventory Form
+//    filling in the Inventory Form
     public void fillInventoryForm() {
 //    Select Device Type: Phone → Brand dropdown enabled.
         device_Type.click();
@@ -134,11 +130,13 @@ public class LandingPage {
 
 //    Click apply discount button
         apply_discount_btn.click();
+    }
 
+//    ========================================================================
+     public void ConfirmPurchase(){
 //    Click Confirm Purchase → Success toast with order details.
         Confirm_Purchase.click();
 
-//    ========================================================================
     }
 
     public void viewInvoice() {
@@ -160,8 +158,13 @@ public class LandingPage {
 
     public void viewInvoiceOrderDetails() {
 //    Click View on invoice → Invoice opens with all order details.
-        driver.findElement(By.xpath("//*[contains(@id, 'view-invoice')]")).click();
         Invoice_Order_Details.click();
     }
+
+//    Terminating the entire browser session.
+    public void quit() {
+        driver.quit();
+    }
 }
+
 
