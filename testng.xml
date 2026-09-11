@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+<listeners>
+    <listener class-name="ExtentReports.Listener"/>
+</listeners>
+
+<test verbose="2" preserve-order="true"
+        name="C:/Users/mzwdh/Automate_advance_form_Mzwa/Automate_advance_form_Mzwa">
+        <classes>
+            <class name="Tests.LandingPageTests"/>
+        </classes>
+</test>
+</suite>
