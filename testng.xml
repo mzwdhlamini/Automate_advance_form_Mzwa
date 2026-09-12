@@ -8,6 +8,7 @@
 <test verbose="2" preserve-order="true"
         name="C:/Users/mzwdh/Automate_advance_form_Mzwa/Automate_advance_form_Mzwa">
         <classes>
+            <class name="Tests.LoginTests"/>
             <class name="Tests.LandingPageTests"/>
         </classes>
 </test>

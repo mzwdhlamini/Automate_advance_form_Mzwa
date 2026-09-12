@@ -4,7 +4,7 @@ import org.testng.annotations.Test;
 
 public class LandingPageTests extends base{
 
-    @Test(dependsOnGroups = "LoginTests")
+    @Test
         public void clickLoginButton() throws InterruptedException {
             takesScreenshots.takesSnapShot(driver,"myLearningTab is Displayed");
             landingPage.clickLoginButton();
